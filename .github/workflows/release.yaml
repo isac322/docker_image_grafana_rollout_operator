@@ -9,6 +9,7 @@ on:
       - Dockerfile
       - go.mod
       - go.sum
+      - .github/workflows/release.yaml
   workflow_dispatch:
 
 jobs:
