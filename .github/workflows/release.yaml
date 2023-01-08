@@ -1,0 +1,29 @@
+---
+name: release
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - Dockerfile
+      - go.mod
+      - go.sum
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Get operator version
+        id: version
+        run: |
+          echo "version=$(go list -f '{{ .Version }}' -m 'github.com/grafana/rollout-operator')" >> $GITHUB_OUTPUT
+
+      - uses: marvinpinto/action-automatic-releases@v1.2.1
+        with:
+          repo_token: "${{ secrets.GHA_PAT }}"
+          prerelease: false
+          automatic_release_tag: ${{ steps.version.outputs.version }}
