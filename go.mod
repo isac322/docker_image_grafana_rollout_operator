@@ -2,7 +2,7 @@ module rollout-operator
 
 go 1.19
 
-require github.com/grafana/rollout-operator v0.1.2
+require github.com/grafana/rollout-operator v0.2.0
 
 require (
 	github.com/PuerkitoBio/purell v1.1.1 // indirect
