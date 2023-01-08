@@ -5,6 +5,8 @@ on:
     paths:
       - Dockerfile
       - .github/workflows/ci.yml
+      - go.mod
+      - go.sum
 
   workflow_dispatch:
 
