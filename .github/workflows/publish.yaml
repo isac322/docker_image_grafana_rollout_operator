@@ -41,7 +41,7 @@ jobs:
           flavor: latest=false
           images: ${{ env.DOCKERHUB_USERNAME }}/${{ env.REPOSITORY }}
           tags: |
-            type=raw,value=${{ needs.version.outputs.version }}
+            type=raw,value=${{ steps.version.outputs.version }}
           labels: |
             maintainer=${{ env.DOCKERHUB_USERNAME }}
             org.opencontainers.image.title=rollout-operator
