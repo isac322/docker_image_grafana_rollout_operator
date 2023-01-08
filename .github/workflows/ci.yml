@@ -2,6 +2,10 @@ name: ci
 
 on:
   pull_request:
+    paths:
+      - Dockerfile
+      - .github/workflows/ci.yml
+
   workflow_dispatch:
 
 jobs:
@@ -33,7 +37,6 @@ jobs:
           cp -f Dockerfile rollout-operator/Dockerfile
 
       - name: Enable buildkit cache
-        if: steps.changed-files.outputs.any_changed == 'true'
         uses: actions/cache@v3
         with:
           path: /tmp/buildkit-cache/buildkit-state.tar
@@ -42,7 +45,6 @@ jobs:
             ${{ runner.os }}-buildkit-
 
       - name: Load buildkit state from cache
-        if: steps.changed-files.outputs.any_changed == 'true'
         uses: dashevo/gh-action-cache-buildkit-state@v1
         with:
           builder: buildx_buildkit_${{ steps.buildx.outputs.name }}0
