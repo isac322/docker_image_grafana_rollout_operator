@@ -70,7 +70,7 @@ jobs:
         with:
           buildx-name: ${{ steps.buildx.outputs.name }}
           cache-key: ${{ runner.os }}-buildkit-${{ steps.version.outputs.version }}
-          cache-restore-key: |
+          cache-restore-keys: |
             ${{ runner.os }}-buildkit-
 
       - name: Build
